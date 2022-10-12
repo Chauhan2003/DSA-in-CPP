@@ -1,0 +1,69 @@
+#include<iostream>
+#include<stack>
+using namespace std;
+
+class Stack{
+    public:
+        int *arr;
+        int top;
+        int size;
+        
+    Stack(int size){
+        this->size = size;
+        arr = new int[size];
+        top = -1;
+    }
+    
+    void push(int data){
+        if(size-top>1){
+            top++;
+            arr[top] = data;
+        }
+        else{
+            cout<<"Array Is Not Empty"<<endl;
+        }
+    }
+    
+    void pop(){
+        if(top>=0){
+            top--;
+        }
+        else{
+            cout<<"Array Is Empty"<<endl;
+        }
+    }
+    
+    int peek(){
+        if(top>=0){
+            return arr[top];
+        }
+    }
+    
+    bool isempty(){
+        if(top==-1){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+};
+
+int main(){
+    Stack str(5);
+    
+    str.push(1);
+    str.push(3);
+    str.push(5);
+    str.push(7);
+    str.push(9);
+    
+    cout<<"Before Pop: "<<str.peek()<<endl;
+    
+    str.pop();
+    str.pop();
+    
+    cout<<"After Pop: "<<str.peek()<<endl;
+    
+    return 0;
+}
