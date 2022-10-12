@@ -1,0 +1,21 @@
+#include<iostream>
+#include<stack>
+using namespace std;
+
+int main(){
+    stack<int> str;
+    str.push(1);
+    str.push(3);
+    str.push(5);
+    str.push(7);
+    
+    cout<<"Top Most Element In Stack: "<<str.top()<<endl;
+    
+    str.pop();
+    
+    cout<<"After Pop, The Top Most Element In Stack: "<<str.top()<<endl;
+    
+    cout<<"----> 0 - Stack Is Not Empty\r----> 1 - Stack Is Empty "<<endl<<str.empty()<<endl;
+    
+    return 0;
+}
