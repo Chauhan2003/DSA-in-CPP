@@ -1,0 +1,94 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+Node {
+    public:
+	int data;
+	Node* next;
+};
+
+Node* top;
+
+void push(int data)
+{
+	Node* temp = new Node();
+	temp->data = data;
+	temp->next = top;
+	top = temp;
+}
+
+int isEmpty()
+{
+	return top == NULL;
+}
+
+int peek()
+{
+
+	if (!isEmpty())
+		return top->data;
+	else
+		exit(1);
+}
+
+void pop()
+{
+	Node* temp;
+
+	if (top == NULL) {
+		cout << "\nStack Underflow" << endl;
+		exit(1);
+	}
+	else {
+		temp = top;
+		top = top->next;
+		free(temp);
+	}
+}
+
+void display()
+{
+	Node* temp;
+	if (top == NULL) {
+		cout << "\nStack Underflow";
+		exit(1);
+	}
+	else {
+		temp = top;
+		while (temp != NULL) {
+
+			cout << temp->data;
+			temp = temp->next;
+			if(temp != NULL)
+				cout << " -> ";
+		}
+	}
+}
+
+int main()
+{
+
+	// Push the elements of stack
+	push(11);
+	push(22);
+	push(33);
+	push(44);
+
+	// Display stack elements
+	display();
+
+	// Print top element of stack
+	cout << "\nTop element is " << peek() << endl;
+
+	// Delete top elements of stack
+	pop();
+	pop();
+
+	// Display stack elements
+	display();
+
+	// Print top element of stack
+	cout << "\nTop element is " << peek() << endl;
+
+	return 0;
+}
