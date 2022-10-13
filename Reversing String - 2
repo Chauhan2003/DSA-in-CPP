@@ -1,0 +1,27 @@
+// Reverse a string :
+// ---------------------
+// | a | b | c | d | e |
+// ---------------------
+
+#include<bits/stdc++.h>
+using namespace std;
+
+void Reverse(string& str){
+    int len = str.length();
+    int s=0; // Starting point : 
+    int l=len-1; // last point :
+    
+    while(s<=l){
+        swap(str[s] , str[l]);
+        s++;
+        l--;
+    }
+}
+
+int main(){
+    string str = "Gagan Chauhan";
+    Reverse(str);
+    cout<<str;
+    
+    return 0;
+}
