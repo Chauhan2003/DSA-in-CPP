@@ -1,0 +1,39 @@
+//  Finding Out First Repeating Element By Array :-
+#include<bits/stdc++.h>
+using namespace std;
+
+void takeinput(int arr[], int n){
+    int ele;
+    for(int i=0;i<n;i++){
+        cin>>ele;
+        arr[i]=ele;
+    }
+}
+
+void printarray(int arr[], int n){
+    for(int i=0;i<n;i++){
+        cout<<arr[i]<<" ";
+    }
+}
+
+void findrepeated(int arr[], int n){
+    for(int i=0;i<n;i++){
+        for(int j=i+1;j<n;j++){
+            if(arr[i]==arr[j]){
+                cout<<"First Repeating Element In Array Is : "<<arr[i];
+            }
+        }
+    }
+}
+
+int main(){
+    int n;
+    cout<<"Enter Size of array : ";
+    cin>>n;
+    int arr[n];
+    takeinput(arr, n);
+    findrepeated(arr, n);
+    // printarray(arr, n);
+    
+    return 0;
+}
