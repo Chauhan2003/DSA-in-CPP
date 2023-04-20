@@ -1,0 +1,45 @@
+#include<iostream>
+using namespace std;
+
+class Node{
+    public:
+    int data;
+    Node* next;
+    
+    Node(int val){
+        data = val;
+        next = NULL;
+    }
+};
+
+void insertTail(Node* &head , int var){
+    Node* new_node = new Node(var);
+    if(head == NULL){
+        head = new_node;
+        return;
+    }
+    Node* temp = head;
+    while(temp->next!=NULL){
+        temp = temp->next;
+    }
+    temp->next = new_node;
+}
+
+void traversal(Node* &head){
+    Node* temp = head;
+    while(temp!=NULL){
+        cout<<temp->data<<" ";
+        temp = temp->next;
+    }
+}
+
+int main(){
+    Node* head = NULL;
+    insertTail(head , 1);
+    insertTail(head , 2);
+    insertTail(head , 3);
+    insertTail(head , 4);
+    insertTail(head , 5);
+    insertTail(head , 6);
+    traversal(head);
+}
