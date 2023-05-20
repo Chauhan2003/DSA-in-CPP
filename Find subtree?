@@ -1,0 +1,75 @@
+// Tree : 01;
+//      1
+//   2    3
+// 8 4   6 7
+
+// Tree : 02;
+//  3
+// 6 7 
+
+// Check if a Binary Tree is subtree of another binary tree?
+
+#include<bits/stdc++.h>
+using namespace std;
+
+class node{
+    public:
+    int data;
+    node* left;
+    node* right;
+    
+    node(int d){
+        this->data = d;
+        this->left = NULL;
+        this->right = NULL;
+    }
+};
+
+bool areIdentical(node* t , node* m){
+    if(t == NULL && m == NULL){
+        return true;
+    }
+    if(t==NULL || m==NULL){
+        return false;
+    }
+    return (t->data == m->data && areIdentical(t->left , m->left) && areIdentical(t->right , m->right));
+}
+
+// tree_2 is subtree of tree_1?
+bool isSubtree(node* tree_1 , node* tree_2){
+    if(tree_1 == NULL){
+        return false;
+    }
+    if(tree_2 == NULL){
+        return true;
+    }
+    if(areIdentical(tree_1 , tree_2)){
+        return true;
+    }
+    
+    return isSubtree(tree_1->left , tree_2) || isSubtree(tree_1->right , tree_2);
+}
+
+int main(){
+    
+    node* tree_1 = new node(1);
+    tree_1 -> left = new node(2);
+    tree_1 -> left -> left = new node(8);
+    tree_1->left->right = new node(4);
+    tree_1->right = new node(3);
+    tree_1->right->left=new node(6);
+    tree_1->right->right=new node(7);
+    
+    node* tree_2 = new node(3);
+    tree_2->left = new node(6);
+    tree_2->right=new node(7);
+    
+    if(isSubtree(tree_1 , tree_2)){
+        cout<<"YES , it is subtree";
+    }
+    else{
+        cout<<"NO , it is not subtree";
+    }
+    
+    return 0;
+}
