@@ -1,0 +1,9 @@
+bool areIdentical(node* t , node* m){
+    if(t == NULL && m == NULL){
+        return true;
+    }
+    if(t==NULL || m==NULL){
+        return false;
+    }
+    return (t->data == m->data && areIdentical(t->left , m->left) && areIdentical(t->right , m->right));
+}
