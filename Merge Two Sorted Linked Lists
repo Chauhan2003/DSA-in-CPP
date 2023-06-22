@@ -1,0 +1,101 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+class Node{
+    public:
+    int data;
+    Node* next;
+    
+    Node(int value){
+        data=value;
+        next=NULL;
+    }
+};
+
+Node* insertElement(Node** head, int val){
+    Node* new_node = new Node(val);
+    new_node->next=NULL;
+    
+    if(*head==NULL){
+        *head = new_node;
+    }
+    else{
+        Node* curr = *head;
+        while(curr->next!=NULL){
+            curr=curr->next;
+        }
+        curr->next = new_node;
+    }
+    
+    return *head;
+}
+
+void displayElement(Node** head){
+    Node* temp = *head;
+    while(temp!=NULL){
+        cout<<temp->data<<" ";
+        temp=temp->next;
+    }
+}
+
+void mergeLinkedList(Node** head1 , Node** head2){
+    vector<int> v;
+    Node* curr1 = *head1;
+    Node* curr2 = *head2;
+    
+    while(curr1!=NULL){
+        v.push_back(curr1->data);
+        curr1=curr1->next;
+    }
+    while(curr2!=NULL){
+        v.push_back(curr2->data);
+        curr2=curr2->next;
+    }
+    sort(v.begin() , v.end());
+    Node* result = new Node(-1);
+    Node* temp = result;
+    for(int i=0;i<v.size();i++){
+        result->next = new Node(v[i]);
+        result = result->next;
+    }
+    temp =temp->next;
+    
+    while(temp!=NULL){
+        cout<<temp->data<<" ";
+        temp = temp->next;
+    }
+}
+
+int main(){
+    Node* head1 = NULL;
+    Node* head2 = NULL;
+    int a=1;
+    int val1;
+    while(a==1){
+        cout<<"Enter Element of 1st Linked List: ";
+        cin>>val1;
+        if(val1!=-1){
+            insertElement(&head1, val1);
+        }
+        else{
+            break;
+        }
+    }
+    // displayElement(&head1);
+    
+    int b=1;
+    int val2;
+    while(b==1){
+        cout<<"Enter Element of 2nd Liked List: ";
+        cin>>val2;
+        if(val2!=-1){
+            insertElement(&head2, val2);
+        }
+        else{
+            break;
+        }
+    }
+    // displayElement(&head2);
+    
+    mergeLinkedList(&head1 , &head2);
+}
