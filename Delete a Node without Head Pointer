@@ -1,0 +1,51 @@
+#include <iostream>
+using namespace std;
+
+class Node {
+public:
+    int data;
+    Node* next;
+    
+    Node(int ele) {
+        data = ele;
+        next = NULL;
+    }
+};
+
+void deleteNode(Node* del) {
+    if (del == NULL || del->next == NULL) {
+        return;
+    }
+    
+    Node* temp = del->next;
+    del->data = temp->data;
+    del->next = temp->next;
+    delete temp;
+}
+
+void print(Node* head) {
+    if (head == NULL) {
+        return;
+    }
+    
+    Node* curr = head;
+    while (curr != NULL) {
+        cout << curr->data << " ";
+        curr = curr->next;
+    }
+}
+
+int main() {
+    Node* a = new Node(3);
+    a->next = new Node(4);
+    a->next->next = new Node(5);
+    a->next->next->next = new Node(7);
+    a->next->next->next->next = new Node(9);
+    
+    Node* del = a->next->next;
+    
+    deleteNode(del);
+    print(a);
+    
+    return 0;
+}
