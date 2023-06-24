@@ -1,0 +1,76 @@
+// Check if linked list is palindrome
+
+#include<bits/stdc++.h>
+using namespace std;
+
+class Node{
+    public:
+    int data;
+    Node* next;
+    
+    Node(int ele){
+        data=ele;
+        next=NULL;
+    }
+};
+
+Node* insert(Node** head, int val){
+    Node* new_node = new Node(val);
+    new_node->next=NULL;
+    
+    if(*head==NULL){
+        *head=new_node;
+    }
+    else{
+        Node* curr=*head;
+        while(curr->next!=NULL){
+            curr = curr->next;
+        }
+        curr->next = new_node;
+    }
+    return *head;
+}
+
+void display(Node** head){
+    Node* temp = *head;
+    while(temp!=NULL){
+        cout<<temp->data<<" ";
+        temp = temp->next;
+    }
+}
+
+void palindrome(Node** head){
+    Node* temp1 = *head;
+    Node* temp2 = *head;
+    
+    vector<int> v , v1;
+    while(temp1!=NULL){
+        v.push_back(temp1->data);
+        temp1=temp1->next;
+    }
+    v1 = v;
+    reverse(v.begin(), v.end());
+    int x=0;
+    while(x<v.size() && v[x]==v1[x]){
+        x++;
+    }
+    if(x==v.size()){
+        cout<<"Yes, it is Palindrome";
+    }
+    else{
+        cout<<"No, it is not a Palindrome";
+    }
+}
+
+
+int main(){
+    Node* head = NULL;
+    insert(&head, 1);
+    insert(&head, 2);
+    insert(&head, 2);
+    insert(&head, 2);
+    insert(&head, 2);
+    insert(&head, 1);
+    // display(&head);
+    palindrome(&head);
+}
